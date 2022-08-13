@@ -1,6 +1,5 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import "../../../components/src/styles/globals.css";
 import "tailwindcss/tailwind.css";
 import "../styles/globals.css";
 
