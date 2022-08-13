@@ -65,8 +65,10 @@ typings/
 # Output of 'npm pack'
 *.tgz
 
-# Yarn Integrity file
+# Yarn
 .yarn-integrity
+.yarn/cache
+.yarn/install-state.gz
 
 # dotenv environment variables file
 .env
@@ -102,3 +104,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Webstorm
+.idea/workspace.xml
+.idea/usage.statistics.xml
+.idea/shelf
+
