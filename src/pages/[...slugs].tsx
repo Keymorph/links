@@ -1,6 +1,5 @@
 /*
-  Catch all possible routes and redirect the user to the root slug.
-  Any predefined route takes precedence so this won't override them.
+  Redirect the
 */
 import { getUrlFromSlug } from "../data/services/url";
 
@@ -8,12 +7,21 @@ export default function AnySlug() {
   return <></>;
 }
 
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true,
+  };
+}
+
+// When deployed, any slug previously entered is cached by vercel and any subsequent user that visits that slug
+// won't have to wait for the db operation.
 export async function getStaticProps(context: { params: { slugs: string[] } }) {
   const slugs = context.params.slugs;
   const redirectToHome = {
     redirect: {
       permanent: true,
-      destination: "/",
+      destination: process.env.NEXT_PUBLIC_APP_URL, // Redirect to the Links app home page
     },
   };
 
@@ -39,11 +47,4 @@ export async function getStaticProps(context: { params: { slugs: string[] } }) {
       console.error(error.message);
       return redirectToHome;
     });
-}
-
-export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: true,
-  };
 }

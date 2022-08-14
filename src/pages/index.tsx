@@ -1,6 +1,17 @@
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 export default function Index() {
+  //#region Hooks
+
+  useEffect(() => {
+    if (window.location.origin !== process.env.NEXT_PUBLIC_APP_URL) {
+      window.location.href = process.env.NEXT_PUBLIC_APP_URL || "";
+    }
+  }, []);
+
+  //#endregion
+
   return (
     <div
       className={
@@ -9,13 +20,27 @@ export default function Index() {
     >
       <motion.h1
         drag
+        dragSnapToOrigin
+        whileDrag={{ cursor: "grabbing" }}
         className={
-          "w-4/5 md:w-1/2 font-bold text-center text-text-primary text-2xl"
+          "absolute w-4/5 md:w-1/2 font-bold text-center text-primary text-2xl cursor-grab z-10"
         }
       >
-        Upon navigating to an invalid slug you will be redirected to this page
-        which will contain the home page for the links app.
+        Nothing to see here.
       </motion.h1>
+      <motion.div
+        whileHover={{ scale: 1.1 }}
+        animate={{
+          opacity: [0, 1, 0, 1, 0],
+          borderWidth: [0, 8, 0, 8, 0],
+          height: ["4rem", "8rem", "4rem", "8rem", "4rem"],
+          width: ["16rem", "20rem", "16rem", "20rem", "16rem"],
+          transition: {
+            duration: 1,
+          },
+        }}
+        className={"border-primary rounded-full"}
+      />
     </div>
   );
 }
