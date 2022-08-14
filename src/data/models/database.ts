@@ -1,11 +1,5 @@
 import { CosmosClient } from "@azure/cosmos";
 
-// For some reason, edge functions don't seem to have some node properties. As such, the process.version value which is
-// used by the universal-user-agent package from within CosmosClient will be overriden. This is to prevent the
-// getUserAgent function from crashing when running in the edge.
-// @ts-ignore
-process.version = "v16.16.0";
-
 // Initialize the CosmosDB client | Connect to the database
 const endpoint = process.env.COSMOSDB_ENDPOINT || "";
 const key = process.env.COSMOSDB_KEY;
