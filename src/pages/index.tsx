@@ -5,8 +5,11 @@ export default function Index() {
   //#region Hooks
 
   useEffect(() => {
-    if (window.location.origin !== process.env.NEXT_PUBLIC_APP_URL) {
-      window.location.href = process.env.NEXT_PUBLIC_APP_URL || "";
+    if (
+      process.env.NEXT_PUBLIC_APP_URL &&
+      window.location.origin !== process.env.NEXT_PUBLIC_APP_URL
+    ) {
+      window.location.href = process.env.NEXT_PUBLIC_APP_URL;
     }
   }, []);
 
