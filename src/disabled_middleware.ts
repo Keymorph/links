@@ -2,7 +2,8 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { getUrlFromSlug } from "./data/services/url";
 
-export async function middleware(request: NextRequest) {
+// Disabled for now, alternative solution that uses nodeJs in pages/[...slugs]
+export async function disabled_middleware(request: NextRequest) {
   const { pathname, origin } = request.nextUrl;
   const slug = request.url.split("/").pop() || "";
   const PUBLIC_FILE = /\.(.*)$/;
@@ -18,7 +19,6 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Get url from slug in database
   return await getUrlFromSlug(slug)
     .then((url) => {
       if (url) {
